@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+
+{% block title %}
+  <title>View DB</title>
+{% endblock %} 
+
+{% block content%}
+    {% for item in user_values %}
+        <p> Name: {{item.id}}, {{item.first_name}}, {{item.email}} </p>
+    {% endfor%}
+    <br> <br>
+    {% for item in conn_values %}
+    <p> Connection: {{item.connection_id}}, {{item.user_id}} {{item.connection_type}}, {{item.connection_host}}, {{item.connection_database}}, {{item.connection_user}}, {{item.connection_port}}, {{item.connection_logmech}}, {{item.connection_createDate}}, {{item.connection_updateDate}} </p>
+    {% endfor%}
+
+    <br> <br>
+    {% for item in table_values %}
+    <p> Table: {{item.table_id}}, {{item.user_id}} {{item.table_database}}, {{item.table_name}}, {{item.table_string}}, {{item.table_desc}}, {{item.table_createDate}}, {{item.table_updateDate}} </p>
+    {% endfor%}
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

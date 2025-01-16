@@ -1,0 +1,16 @@
+flask
+Flask-SQLAlchemy
+flask-login
+openai
+boto3
+yml
+SQLAlchemy
+markdown
+python-dotenv
+pyyaml
+langchain-community
+teradataml
+langgraph
+langchain-aws
+langchain-openai
+

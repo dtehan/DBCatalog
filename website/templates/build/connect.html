@@ -1,0 +1,55 @@
+{% extends "base.html" %} 
+
+{% block title %}
+    <title>Creating Connection</title>
+{% endblock %} 
+
+{% block content%}
+    <h3>Fill out the database connection details and connect</h3><br>
+    <div class="input-group mb-3">
+        <form method="post">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">DB Type</label>
+                <select class="form-select" name="db_type" value="{{ initial_values['db_type'] }}">
+                    <option value="teradatasql">Teradata</option>
+                    <option value="mysql">MySQL</option>
+                    <option value="mssql">Microsoft SQL</option>
+                    <option value="postgresql">Postgres SQL</option>
+                    <option value="db2">IBM DB2</option>
+                    <option value="oracle">Oracle</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Host</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="host" value="{{ initial_values['host'] }}" >
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Database</label>
+                <input type="text" class="form-control" id="exampleFormControlInput2" name="database" value="{{ initial_values['database'] }}" >
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">User</label>
+                <input type="text" class="form-control" id="exampleFormControlInput3" name="user" value="{{ initial_values['user'] }}" >
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleFormControlInput4" name="password" value="{{ initial_values['password'] }}" >
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Port</label>
+                <input type="text" class="form-control" id="exampleFormControlInput5" name="port" value="{{ initial_values['port'] }}" >
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Login Mechanism</label>
+                <input type="text" class="form-control" id="exampleFormControlInput6" name="logmech" value="{{ initial_values['logmech'] }}" >
+            </div>
+            <div>
+                <button type="submit" class="btn btn-secondary">Add Connection</button>
+            </div>
+            
+        </form>
+    </div>
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}

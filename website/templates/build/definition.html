@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Connecting to DB</title>
+
+
+{% endblock %}
+
+{% block content%}
+<br>
+<br>
+<h3> The build </h3>
+<br>
+<p>The build has three steps, this will take a while.</p>
+
+<ol class="list-group ">
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="spinner-border text-primary d-none" role="status" id="host-spinner">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="ms-2 me-auto">
+            <div class="fw-bold">Connecting to Host:</div>
+            Connection string:
+            {% if session["db_type"] == "mysql" %}
+            mysql+mysqlconnector://{{session['db_user']}}:password@{{session['db_host']}}:{{session['db_port']}}/{{session['db_database']}}
+            {% endif%}
+
+            {% if session["db_type"] == "postgresql" %}
+            postgresql+psycopg2://{{session['db_user']}}:password@{{session['db_host']}}:{{session['db_port']}}/{{session['db_database']}}
+            {% endif%}
+
+            {% if session["db_type"] == "db2" %}
+            db2+ibm_db://{{session['db_user']}}:password@{{session['db_host']}}:{{session['db_port']}}/{{session['db_database']}}
+            {% endif%}
+
+            {% if session["db_type"] == "oracle" %}
+            oracle+oracledb://{{session['db_user']}}:password@{{session['db_host']}}
+            {% endif%}
+
+            {% if session["db_type"] == "teradatasql" %}
+            teradatasql://{{session['db_user']}}:password@{{session['db_host']}}:{{session['db_port']}}/{{session['db_database']}}?logmech={{session['db_logmech']}}
+            {% endif%}
+        </div>
+
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="spinner-border text-primary d-none" role="status" id="database-spinner">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="ms-2 me-auto">
+            <div class="fw-bold">Getting all tables from Database: </div> All tables from {{session["db_database"]}}
+            will be retrieved and added to the catalog.
+
+        </div>
+
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="spinner-border text-primary d-none" role="status" id="llm-spinner">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="ms-2 me-auto">
+            <div class="fw-bold">Getting business description:</div>
+            Connecting to LLM ({{LLM}}) and generating business descriptions
+        </div>
+
+    </li>
+</ol>
+<br>
+<form method="POST">
+    <div>
+        <button id="start-build" class="btn btn-primary" onclick="fetchData()">Start
+            Build
+        </button>
+    </div>
+</form>
+<br>
+<br>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+    function showSpinner() {
+        document.getElementById('start-build').disabled = true;
+        document.getElementById('host-spinner').classList.remove('d-none');
+        document.getElementById('database-spinner').classList.remove('d-none');
+        document.getElementById('llm-spinner').classList.remove('d-none');
+    }
+
+    function fetchData() {
+        showSpinner();
+        fetch("/build", {
+            method: "GET",
+        }).then((_res) => {
+            window.location.href = "/view";
+        });
+    }
+</script>
+{% endblock %}

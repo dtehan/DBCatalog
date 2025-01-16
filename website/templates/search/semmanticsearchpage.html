@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Search Tables</title>
+{% endblock %}
+
+{% block content%}
+
+<br> <br>
+
+    <form name="serchform" method="POST" action="/semmanticsearchpage">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="semmantic_query" placeholder="Search Database Name" aria-label="Username" >
+            <button type="submit" class="btn btn-secondary">Search </button>
+        </div>
+        
+    </form>
+<br>
+<div>
+    {% if semmantic_values%}
+        {{semmantic_values}}
+    {% endif%}
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}

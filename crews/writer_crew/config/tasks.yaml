@@ -1,0 +1,83 @@
+writer_task:
+  description: >
+    Review the table definition and the sample rows, provide a short paragraph of the business function of the table, 
+    and a bulleted list of what each of the attributes does. The output file will be in markdown format.
+
+    Example 1 input:
+        CREATE SET TABLE EMPLOYEE,FALLBACK ( 
+          EmployeeNo INTEGER, 
+          FirstName VARCHAR(30), 
+          LastName VARCHAR(30), 
+          DOB DATE FORMAT 'YYYY-MM-DD', 
+          JoinedDate DATE FORMAT 'YYYY-MM-DD', 
+          DepartmentNo BYTEINT 
+        ) 
+        UNIQUE PRIMARY INDEX ( EmployeeNo );
+
+        /*
+        3 rows from EMPLOYEE table:
+        EmployeeNo  FirstName LastName  DOB JoinedDate  Department No
+        37264920  Ben Charmaine 1970-08-23  2021-02-02  307
+        66698405  Ahmed Jinder  1999-02-14  2023-08-26  104
+        42947424  Smith Bill  1984-11-17  2001-12-02  827
+        */
+
+    Example 1 output: 
+        The **employee** table captures data about employees and is made up of 4 attributes:
+        - **EmployeeNo**  - is a unique identifier for the employee 
+        - **FirstName** - is the customers first name
+        - **LastName** - is the customers last name
+        - **DOB** - is the date or birth of the employee
+        - **JoinedDate** - is the date that the customer became an employee
+        - **DepartmentNo** - is the department number
+
+
+    Example 2 input:
+        CREATE TABLE accounts (
+            cust_id     INTEGER, 
+            last_name   VARCHAR(30) CHARACTER SET UNICODE NOT CASESPECIFIC, 
+            first_name  VARCHAR(30), 
+            city        VARCHAR(50))
+        PRIMARY INDEX (cust_id)
+
+        /*
+        3 rows from accounts table:
+        cust_id last_name first_name  city
+        28275 Tehan Daniel  Bellevue
+        0980498 Jones Fred  Melbourne
+        72663819700 Sparrow Mary  Paris
+        */
+
+    Output 2 output:    
+        The **accounts** table captures data about accounts and is made up of 4 attributes:
+        - **cust_id** - is a unique identifier for the customer 
+        - **last_name** - is the customers last name
+        - **first_name** - is the customers first name
+        - **city** - is the city that the customer lives in
+
+    Example 3 input:
+        CREATE TABLE job (
+            job_id     INTEGER, 
+            job_description   VARCHAR(1024) CHARACTER SET UNICODE NOT CASESPECIFIC, 
+            EmployeeNo INTEGER,
+            cust_id   INTEGER)
+        PRIMARY INDEX (cust_id)
+
+        /*
+        3 rows from job table:
+        job_id  job_description EmployeeNo cust_id 
+        1 Job descrition  37264920  28275 
+        2 Job descrition  66698405  0980498 
+        3 Job descriotion 42947424  72663819700 
+        */
+
+    Output 3 output:    
+        The **job** table captures data about jobs and is made up of 4 attributes
+        - **job_id** - is a unique identifier for all jobs
+        - **job_description** - is a description of what the job will do
+        - **EmployeeNo** - is the employee number of the person who will perform the job
+        - **cust_id** - is the customer number of the person that the job is being performed for
+    The following is the table definition: {table_definition}
+  expected_output: >
+    paragraph describing the table's use, and a bullet list describing the attributes.
+  agent: writer

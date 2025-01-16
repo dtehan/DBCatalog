@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Search Tables</title>
+{% endblock %}
+
+{% block content%}
+
+<br> <br>
+
+    <form name="serchform" method="POST" action="/searchpage">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="searchdb" placeholder="Search Database Name" aria-label="Username" >
+            <span class="input-group-text"> OR </span>
+            <input type="text" class="form-control" name="searchtable" placeholder="Search Table Name" aria-label="Username">
+            <span class="input-group-text"> OR </span>
+            <input type="text" class="form-control" name="searchcriteria" placeholder="Search Description" aria-label="Username">
+            
+            <button type="submit" class="btn btn-secondary">Search </button>
+        </div>
+        
+    </form>
+
+<br>
+<br>
+<div>
+    <table class="table table-boardered">
+        <tr>
+            <th>Database</th>
+            <th>Table Name</th>
+            <th>Business Description</th>
+            <th>Maintenance</th>
+        </tr>
+        <tbody class="table-group-divider">
+            {% if table_values %}
+                {% for item in table_values %}
+                <tr>
+                    <td>{{item.table_database}}</td>
+                    <td>{{item.table_name}}</td>
+                    <td>{{item.table_desc | safe}}</td>
+                    <td><button type="button" class="btn-close" aria-label="Close" onClick="deleteTable({{ item.table_id }}, '/searchpage')">
+                      </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+    function deleteTable(table_id, screen) {
+      fetch("/deletetable", {
+        method: "POST",
+        body: JSON.stringify({ table_id: table_id }),
+      }).then((_res) => {
+        window.location.href = screen;
+      });
+    }
+</script>
+{% endblock %}
