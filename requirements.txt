@@ -3,7 +3,7 @@ Flask-SQLAlchemy
 flask-login
 openai
 boto3
-yml
+PyYAML
 SQLAlchemy
 markdown
 python-dotenv
