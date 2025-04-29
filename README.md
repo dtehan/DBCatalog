@@ -68,6 +68,7 @@ aws_model_nova_lite=us.amazon.nova-lite-v1:0
 
 ##################################################
 # Azure keys should be inserted below if using Azure AI
+# please use URL engpoint for model
 ##################################################
 
 azure_api_version=2023-07-01-preview
@@ -142,7 +143,7 @@ venv\Scripts\activate
 ## Running
 **Run this project**
 ```
-venv/bin/python DBFLOW/main.py
+venv/bin/python main.py
 ```
 
 
