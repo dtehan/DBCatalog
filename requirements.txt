@@ -13,4 +13,4 @@ teradataml
 langgraph
 langchain-aws
 langchain-openai
-
+langchain_chroma
