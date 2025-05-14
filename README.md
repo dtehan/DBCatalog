@@ -33,8 +33,7 @@ The entire flow of the process is controlled using crewai flow.
 **Azure OpenAI version**
 - This requires a set of Azure keys to be defined in the DBCatalog.env file. GPT 4o mini is fast, comprehensive and reasonable price.
 
-
-DBCatalog.env file configuration shown below
+Rename the DBCatalog.env file to .env, the file configuration must containthe following
 
 ```
 ##################################################

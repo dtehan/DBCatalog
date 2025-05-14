@@ -16,13 +16,13 @@ from dotenv import load_dotenv, find_dotenv
 
 
 def load_env():
-    _ = load_dotenv(find_dotenv('TDTransparent.env'))
+    _ = load_dotenv(find_dotenv(), override=True)
 
 
 class BedrockWriterCrew():
 
-    agents_path = 'src/crews/writer_crew/config/agents.yaml'
-    tasks_path = 'src/crews/writer_crew/config/tasks.yaml'
+    agents_path = 'crews/writer_crew/config/agents.yaml'
+    tasks_path = 'crews/writer_crew/config/tasks.yaml'
     max_tokens = 20000
 
     def __init__(self):
